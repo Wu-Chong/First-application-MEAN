@@ -3,22 +3,22 @@ var router = express.Router();
 const sql = require('mssql');
 
 const config = {
-  user: 'wu.chong',  //Vostro user name
-  password: 'xxx123#', //Vostra password
-  server: "213.140.22.237",  //Stringa di connessione
-  database: 'wu.chong', //(Nome del DB)
+  user: 'wu.chong',  
+  password: 'xxx123#', 
+  server: "213.140.22.237", 
+  database: 'wu.chong',
 }
 
-//Function to connect to database and execute query
+
 let executeQuery = function (res, query, next) {
   sql.connect(config, function (err) {
-    if (err) { //Display error page
+    if (err) {
       console.log("Error while connecting database :- " + err);
       res.status(500).json({success: false, message:'Error while connecting database', error:err});
       return;
     }
-    var request = new sql.Request(); // create Request object
-    request.query(query, function (err, result) { //Display error page
+    var request = new sql.Request();
+    request.query(query, function (err, result) { 
       if (err) {
         console.log("Error while querying database :- " + err);
         res.status(500).json({success: false, message:'Error while querying database', error:err});
